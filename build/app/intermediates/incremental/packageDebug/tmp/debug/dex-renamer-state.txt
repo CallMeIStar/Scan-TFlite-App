@@ -1,0 +1,4 @@
+#Mon Apr 08 15:39:28 EEST 2024
+base.0=G\:\\downlod\\object detection\\transferflow_issues\\build\\app\\intermediates\\dex\\debug\\minifyDebugWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
