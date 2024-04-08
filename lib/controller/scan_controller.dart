@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:camera/camera.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
@@ -100,6 +101,9 @@ class ScanController extends GetxController {
 
     if (response.statusCode == 200) {
       print('LED status set successfully');
+      
+      // Check if LED status is set to 1
+
     } else {
       throw Exception('Failed to set LED status');
     }
