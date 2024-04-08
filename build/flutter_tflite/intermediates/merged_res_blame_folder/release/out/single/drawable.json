@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/drawable/notification_bg_low.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/drawable/notification_icon_background.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/drawable/notification_bg.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/drawable/notification_tile_bg.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/drawable/notification_tile_bg.xml"
+    }
+]

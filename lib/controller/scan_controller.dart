@@ -12,6 +12,7 @@ class ScanController extends GetxController {
   var isCameraInitialized = false.obs;
   var detectedObject = ''.obs;
   var cameraCount = 0;
+  var previousLedStatus = 0;
 
   @override
   void onInit() {
@@ -82,17 +83,21 @@ class ScanController extends GetxController {
       detectedObject('$objectLabel\n(Confidence: ${(confidence * 100).toStringAsFixed(2)}%)');
 
       // Check if the detected object is "open"
-      if (objectLabel.toLowerCase() == 'open') {
-        // Send data (setLedStatus=1) to the API
-        await sendLEDStatus(1);
+      if (objectLabel.toLowerCase() == 'no hand') {
+        // Do not update LED status
+        print("No Hand detected. Keeping LED status as it is.");
       } else {
-        // Send data (setLedStatus=0) to the API
-        await sendLEDStatus(0);
+        // Update LED status
+        if (objectLabel.toLowerCase() == 'open') {
+          await sendLedStatus(1);
+        } else {
+          await sendLedStatus(0);
+        }
       }
     }
   }
 
-  Future<void> sendLEDStatus(int status) async {
+  Future<void> sendLedStatus(int status) async {
     final url = Uri.parse('http://192.168.15.140/setLEDStatus');
     final headers = {'Content-Type': 'application/json'};
     final body = json.encode({'setLedStatus': status});
@@ -101,9 +106,7 @@ class ScanController extends GetxController {
 
     if (response.statusCode == 200) {
       print('LED status set successfully');
-      
-      // Check if LED status is set to 1
-
+      previousLedStatus = status; // Update previous LED status
     } else {
       throw Exception('Failed to set LED status');
     }

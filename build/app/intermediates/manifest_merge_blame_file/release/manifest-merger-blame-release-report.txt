@@ -1,0 +1,205 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.flutter_application_1"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:2:1-62
+11-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:2:18-60
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:3:1-74
+12-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:3:18-72
+13    <!--
+14         Required to query activities that can process text, see:
+15         https://developer.android.com/training/package-visibility?hl=en and
+16         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+17
+18         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
+19    -->
+20    <queries>
+20-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:41:5-46:15
+21        <intent>
+21-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:42:9-45:18
+22            <action android:name="android.intent.action.PROCESS_TEXT" />
+22-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:43:13-72
+22-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:43:21-70
+23
+24            <data android:mimeType="text/plain" />
+24-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:44:13-50
+24-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:44:19-48
+25        </intent>
+26    </queries>
+27
+28    <uses-permission android:name="android.permission.CAMERA" />
+28-->[:camera_android] G:\downlod\object detection\transferflow_issues\build\camera_android\intermediates\merged_manifest\release\AndroidManifest.xml:9:5-65
+28-->[:camera_android] G:\downlod\object detection\transferflow_issues\build\camera_android\intermediates\merged_manifest\release\AndroidManifest.xml:9:22-62
+29    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+29-->[:camera_android] G:\downlod\object detection\transferflow_issues\build\camera_android\intermediates\merged_manifest\release\AndroidManifest.xml:10:5-71
+29-->[:camera_android] G:\downlod\object detection\transferflow_issues\build\camera_android\intermediates\merged_manifest\release\AndroidManifest.xml:10:22-68
+30
+31    <permission
+31-->[androidx.core:core:1.10.1] C:\Users\Marian\.gradle\caches\transforms-3\0b9c903fef8d2eb2a269c36999ef4a74\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
+32        android:name="com.example.flutter_application_1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+32-->[androidx.core:core:1.10.1] C:\Users\Marian\.gradle\caches\transforms-3\0b9c903fef8d2eb2a269c36999ef4a74\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
+33        android:protectionLevel="signature" />
+33-->[androidx.core:core:1.10.1] C:\Users\Marian\.gradle\caches\transforms-3\0b9c903fef8d2eb2a269c36999ef4a74\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
+34
+35    <uses-permission android:name="com.example.flutter_application_1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+35-->[androidx.core:core:1.10.1] C:\Users\Marian\.gradle\caches\transforms-3\0b9c903fef8d2eb2a269c36999ef4a74\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
+35-->[androidx.core:core:1.10.1] C:\Users\Marian\.gradle\caches\transforms-3\0b9c903fef8d2eb2a269c36999ef4a74\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
+36
+37    <application
+38        android:name="android.app.Application"
+38-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:7:9-42
+39        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+39-->[androidx.core:core:1.10.1] C:\Users\Marian\.gradle\caches\transforms-3\0b9c903fef8d2eb2a269c36999ef4a74\transformed\core-1.10.1\AndroidManifest.xml:28:18-86
+40        android:icon="@mipmap/ic_launcher"
+40-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:8:9-43
+41        android:label="flutter_application_1" >
+41-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:6:9-46
+42        <activity
+42-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:9:9-29:20
+43            android:name="com.example.flutter_application_1.MainActivity"
+43-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:10:13-41
+44            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+44-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:14:13-163
+45            android:exported="true"
+45-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:11:13-36
+46            android:hardwareAccelerated="true"
+46-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:15:13-47
+47            android:launchMode="singleTop"
+47-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:12:13-43
+48            android:theme="@style/LaunchTheme"
+48-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:13:13-47
+49            android:windowSoftInputMode="adjustResize" >
+49-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:16:13-55
+50
+51            <!--
+52                 Specifies an Android theme to apply to this Activity as soon as
+53                 the Android process has started. This theme is visible to the user
+54                 while the Flutter UI initializes. After that, this theme continues
+55                 to determine the Window background behind the Flutter UI.
+56            -->
+57            <meta-data
+57-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:21:13-24:17
+58                android:name="io.flutter.embedding.android.NormalTheme"
+58-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:22:15-70
+59                android:resource="@style/NormalTheme" />
+59-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:23:15-52
+60
+61            <intent-filter>
+61-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:25:13-28:29
+62                <action android:name="android.intent.action.MAIN" />
+62-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:26:17-68
+62-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:26:25-66
+63
+64                <category android:name="android.intent.category.LAUNCHER" />
+64-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:27:17-76
+64-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:27:27-74
+65            </intent-filter>
+66        </activity>
+67        <!--
+68             Don't delete the meta-data below.
+69             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+70        -->
+71        <meta-data
+71-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:32:9-34:33
+72            android:name="flutterEmbedding"
+72-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:33:13-44
+73            android:value="2" />
+73-->G:\downlod\object detection\transferflow_issues\android\app\src\main\AndroidManifest.xml:34:13-30
+74
+75        <provider
+75-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:10:9-18:20
+76            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+76-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-82
+77            android:authorities="com.example.flutter_application_1.flutter.image_provider"
+77-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:12:13-74
+78            android:exported="false"
+78-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:13:13-37
+79            android:grantUriPermissions="true" >
+79-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:14:13-47
+80            <meta-data
+80-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:15:13-17:75
+81                android:name="android.support.FILE_PROVIDER_PATHS"
+81-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:16:17-67
+82                android:resource="@xml/flutter_image_picker_file_paths" />
+82-->[:image_picker_android] G:\downlod\object detection\transferflow_issues\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:17:17-72
+83        </provider>
+84
+85        <uses-library
+85-->[androidx.window:window:1.0.0-beta04] C:\Users\Marian\.gradle\caches\transforms-3\032f4dff274e516110d9363a9793a3e3\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+86            android:name="androidx.window.extensions"
+86-->[androidx.window:window:1.0.0-beta04] C:\Users\Marian\.gradle\caches\transforms-3\032f4dff274e516110d9363a9793a3e3\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+87            android:required="false" />
+87-->[androidx.window:window:1.0.0-beta04] C:\Users\Marian\.gradle\caches\transforms-3\032f4dff274e516110d9363a9793a3e3\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+88        <uses-library
+88-->[androidx.window:window:1.0.0-beta04] C:\Users\Marian\.gradle\caches\transforms-3\032f4dff274e516110d9363a9793a3e3\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+89            android:name="androidx.window.sidecar"
+89-->[androidx.window:window:1.0.0-beta04] C:\Users\Marian\.gradle\caches\transforms-3\032f4dff274e516110d9363a9793a3e3\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+90            android:required="false" />
+90-->[androidx.window:window:1.0.0-beta04] C:\Users\Marian\.gradle\caches\transforms-3\032f4dff274e516110d9363a9793a3e3\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+91
+92        <provider
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:24:9-32:20
+93            android:name="androidx.startup.InitializationProvider"
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:25:13-67
+94            android:authorities="com.example.flutter_application_1.androidx-startup"
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:26:13-68
+95            android:exported="false" >
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:27:13-37
+96            <meta-data
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+97                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+98                android:value="androidx.startup" />
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+99        </provider>
+100
+101        <receiver
+101-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+102            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+103            android:directBootAware="false"
+103-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+104            android:enabled="true"
+104-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+105            android:exported="true"
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+106            android:permission="android.permission.DUMP" >
+106-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+107            <intent-filter>
+107-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+108                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+109            </intent-filter>
+110            <intent-filter>
+110-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+111                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+112            </intent-filter>
+113            <intent-filter>
+113-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+114                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+115            </intent-filter>
+116            <intent-filter>
+116-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+117                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+117-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+117-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Marian\.gradle\caches\transforms-3\a0ecce03964d1d4dc26ffab32b08b16e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+118            </intent-filter>
+119        </receiver>
+120    </application>
+121
+122</manifest>

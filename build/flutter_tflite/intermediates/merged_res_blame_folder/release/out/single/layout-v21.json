@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/layout-v21/notification_template_icon_group.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/layout-v21/notification_template_custom_big.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/layout-v21/notification_action_tombstone.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "sq.flutter.tflite.flutter_tflite-merged_res-10:/layout-v21/notification_action.xml",
+        "source": "sq.flutter.tflite.flutter_tflite-core-1.6.0-2:/layout-v21/notification_action.xml"
+    }
+]

@@ -1,0 +1,1 @@
+ G:\\downlod\\object\ detection\\transferflow_issues\\.dart_tool\\flutter_build\\9d817fff0cc50b763b12a5cf3092fd8d\\native_assets.yaml: 

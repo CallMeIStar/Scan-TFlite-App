@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     futureServoValue = fetchServoValue();
     timer = Timer.periodic(const Duration(seconds: 3), (Timer t) {
       setState(() {
-        futureValue = fetchValue(); // Update the future value every 5 seconds
+        futureValue = fetchValue();
         futureServoValue = fetchServoValue();
       });
     });
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    timer.cancel(); // Cancel the timer when the widget is disposed
+    timer.cancel();
     _controller.dispose();
     super.dispose();
   }
@@ -147,159 +147,337 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('IOT Control'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
           children: [
-            const SizedBox(height: 20),
-            FutureBuilder<List<Map<String, dynamic>>>(
-              future: futureValue,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (snapshot.hasData) {
-                  final List<Map<String, dynamic>> dataList = snapshot.data!;
-                  if (dataList.isNotEmpty) {
-                    final Map<String, dynamic> jsonData = dataList[0];
-                    final Map<String, dynamic> jsonData1 = dataList[1];
-                    final Map<String, dynamic> jsonData2 = dataList[2];
-                    final Map<String, dynamic> jsonData3 = dataList[3];
-                    final Map<String, dynamic> jsonData4 = dataList[4];
-                    final Map<String, dynamic> jsonData5 = dataList[5];
-                    final temperature = jsonData['value'];
-                    final humidity = jsonData1['value'];
-                    final heatIndex = jsonData2['value'];
-                    final wifiStrength = jsonData3['value'];
-                    final distance = jsonData4['value'];
-                    final waterLevel = jsonData5['value'];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(Icons.thermostat_outlined),
-                            Text(
-                              "Temperature ${temperature.toStringAsFixed(2)} °C",
-                              style: const TextStyle(fontSize: 18.0),
-                            ),
-                          ],
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue, ),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Text(
+                        'Living Room',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(height: 40),
-                        Row(
-                          children: [
-                            const Icon(Icons.water_drop_outlined),
-                            Text(
-                              "Humidity ${humidity.toStringAsFixed(2)} %",
-                              style: const TextStyle(fontSize: 18.0),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 40),
-                        Row(
-                          children: [
-                            const Icon(Icons.local_fire_department_outlined),
-                            Text(
-                              "Heat Index:${heatIndex.toStringAsFixed(2)} °C",
-                              style: const TextStyle(fontSize: 18.0),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 40),
-                        Row(
-                          children: [
-                            getWifiIcon(wifiStrength.abs()),
-                            Text(
-                              "WiFi Strength:${wifiStrength.abs()}",
-                              style: const TextStyle(fontSize: 18.0),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 40),
-                        Row(
-                          children: [
-                            const Icon(Icons.rule_rounded),
-                            Text(
-                              "Distance:${distance.toStringAsFixed(2)} cm",
-                              style: const TextStyle(fontSize: 18.0),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 40),
-                        Row(
-                          children: [
-                            const Icon(Icons.local_fire_department_outlined),
-                            Text(
-                              "Water Level:${waterLevel.toStringAsFixed(2)}",
-                              style: const TextStyle(fontSize: 18.0),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 40),
-                        Row(
-                          children: [
-                            Slider(
-                              value: sliderValue,
-                              min: 5,
-                              max: 1023,
-                              divisions:
-                                  1018, // Number of divisions between min and max
-                              label: sliderValue.round().toString(),
-                              onChanged: (double value) {
-                                setState(() {
-                                  sliderValue = value;
-                                  setFanStatus();
-                                });
-                              },
-                            ),
-                          ],
-                        )
-                      ],
-                    );
-                  } else {
-                    return const Text('No data available');
-                  }
-                } else {
-                  return const Text('No data available');
-                }
-              },
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    FutureBuilder<List<Map<String, dynamic>>>(
+                      future: futureValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (snapshot.hasData) {
+                          final List<Map<String, dynamic>> dataList =
+                              snapshot.data!;
+                          if (dataList.isNotEmpty) {
+                            final Map<String, dynamic> jsonData = dataList[0];
+                            final Map<String, dynamic> jsonData1 = dataList[1];
+                            final Map<String, dynamic> jsonData2 = dataList[2];
+                            final Map<String, dynamic> jsonData3 = dataList[3];
+                            final Map<String, dynamic> jsonData4 = dataList[4];
+                            final Map<String, dynamic> jsonData5 = dataList[5];
+                            final temperature = jsonData['value'];
+                            final humidity = jsonData1['value'];
+                            final heatIndex = jsonData2['value'];
+                            final wifiStrength = jsonData3['value'];
+                            final distance = jsonData4['value'];
+                            final waterLevel = jsonData5['value'];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.thermostat_outlined),
+                                    Text(
+                                      "Temperature ${temperature.toStringAsFixed(2)} °C",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.water_drop_outlined),
+                                    Text(
+                                      "Humidity ${humidity.toStringAsFixed(2)} %",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                        Icons.local_fire_department_outlined),
+                                    Text(
+                                      "Heat Index:${heatIndex.toStringAsFixed(2)} °C",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    getWifiIcon(wifiStrength.abs()),
+                                    Text(
+                                      "WiFi Strength:${wifiStrength.abs()}",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.rule_rounded),
+                                    Text(
+                                      "Distance:${distance.toStringAsFixed(2)} cm",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                        Icons.local_fire_department_outlined),
+                                    Text(
+                                      "Water Level:${waterLevel.toStringAsFixed(2)}",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                )
+                              ],
+                            );
+                          } else {
+                            return const Text('No data available');
+                          }
+                        } else {
+                          return const Text('No data available');
+                        }
+                      },
+                    ),
+                    FutureBuilder<List<Map<String, dynamic>>>(
+                      future: futureServoValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (snapshot.hasData) {
+                          final List<Map<String, dynamic>> dataList =
+                              snapshot.data!;
+                          if (dataList.isNotEmpty) {
+                            final Map<String, dynamic> jsonData = dataList[0];
+                            final servovalue = jsonData['value'];
+                            final measure = jsonData['unit'];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                const SizedBox(height: 0),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.speed_outlined),
+                                    Text(
+                                      'Value: $servovalue $measure',
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          } else {
+                            return const Text('No data available');
+                          }
+                        } else {
+                          return const Text('No data available');
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
-            FutureBuilder<List<Map<String, dynamic>>>(
-              future: futureServoValue,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (snapshot.hasData) {
-                  final List<Map<String, dynamic>> dataList = snapshot.data!;
-                  if (dataList.isNotEmpty) {
-                    final Map<String, dynamic> jsonData = dataList[0];
-                    final servovalue = jsonData['value'];
-                    final measure = jsonData['unit'];
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const SizedBox(height: 40),
-                        Row(
-                          children: [
-                            const Icon(Icons.speed_outlined),
-                            Text(
-                              'Value: $servovalue $measure',
-                              style: const TextStyle(fontSize: 18.0),
-                            ),
-                          ],
+            SizedBox(width: 10),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Text(
+                        'Kitchen',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    );
-                  } else {
-                    return const Text('No data available');
-                  }
-                } else {
-                  return const Text('No data available');
-                }
-              },
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    FutureBuilder<List<Map<String, dynamic>>>(
+                      future: futureValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (snapshot.hasData) {
+                          final List<Map<String, dynamic>> dataList =
+                              snapshot.data!;
+                          if (dataList.isNotEmpty) {
+                            final Map<String, dynamic> jsonData = dataList[0];
+                            final Map<String, dynamic> jsonData1 = dataList[1];
+                            final Map<String, dynamic> jsonData2 = dataList[2];
+                            final Map<String, dynamic> jsonData3 = dataList[3];
+                            final Map<String, dynamic> jsonData4 = dataList[4];
+                            final Map<String, dynamic> jsonData5 = dataList[5];
+                            final temperature = jsonData['value'];
+                            final humidity = jsonData1['value'];
+                            final heatIndex = jsonData2['value'];
+                            final wifiStrength = jsonData3['value'];
+                            final distance = jsonData4['value'];
+                            final waterLevel = jsonData5['value'];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.thermostat_outlined),
+                                    Text(
+                                      "Temperature ${temperature.toStringAsFixed(2)} °C",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.water_drop_outlined),
+                                    Text(
+                                      "Humidity ${humidity.toStringAsFixed(2)} %",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                        Icons.local_fire_department_outlined),
+                                    Text(
+                                      "Heat Index:${heatIndex.toStringAsFixed(2)} °C",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    getWifiIcon(wifiStrength.abs()),
+                                    Text(
+                                      "WiFi Strength:${wifiStrength.abs()}",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.mode_sharp),
+                                    Text(
+                                      "Distance:${distance.toStringAsFixed(2)} cm",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                        Icons.local_fire_department_outlined),
+                                    Text(
+                                      "Water Level:${waterLevel.toStringAsFixed(2)}",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                )
+                              ],
+                            );
+                          } else {
+                            return const Text('No data available');
+                          }
+                        } else {
+                          return const Text('No data available');
+                        }
+                      },
+                    ),
+                    FutureBuilder<List<Map<String, dynamic>>>(
+                      future: futureServoValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (snapshot.hasData) {
+                          final List<Map<String, dynamic>> dataList =
+                              snapshot.data!;
+                          if (dataList.isNotEmpty) {
+                            final Map<String, dynamic> jsonData = dataList[0];
+                            final servovalue = jsonData['value'];
+                            final measure = jsonData['unit'];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                const SizedBox(height: 0),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.speed_outlined),
+                                    Text(
+                                      'Value: $servovalue $measure',
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          } else {
+                            return const Text('No data available');
+                          }
+                        } else {
+                          return const Text('No data available');
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -322,7 +500,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   onChanged: (value) {
                     setState(() {
                       switchValue = value;
-                      // Call setFanStatus with the appropriate value
                       setFanStatus();
                     });
                   },

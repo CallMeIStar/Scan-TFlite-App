@@ -1,0 +1,13 @@
+io.flutter.plugins.camera.camera_android-jetified-window-1.0.0-beta04-0 C:\Users\Marian\.gradle\caches\transforms-3\032f4dff274e516110d9363a9793a3e3\transformed\jetified-window-1.0.0-beta04\res
+io.flutter.plugins.camera.camera_android-jetified-window-java-1.0.0-beta04-1 C:\Users\Marian\.gradle\caches\transforms-3\142c24f2530665bb6deb4123ab140714\transformed\jetified-window-java-1.0.0-beta04\res
+io.flutter.plugins.camera.camera_android-core-1.6.0-2 C:\Users\Marian\.gradle\caches\transforms-3\2579a7de00054bf46a8dbc332552f622\transformed\core-1.6.0\res
+io.flutter.plugins.camera.camera_android-jetified-annotation-experimental-1.1.0-3 C:\Users\Marian\.gradle\caches\transforms-3\3f96ca76068ab400b494bc7d541ee256\transformed\jetified-annotation-experimental-1.1.0\res
+io.flutter.plugins.camera.camera_android-main-4 C:\Users\Marian\AppData\Local\Pub\Cache\hosted\pub.dev\camera_android-0.10.8+18\android\src\main\res
+io.flutter.plugins.camera.camera_android-release-5 C:\Users\Marian\AppData\Local\Pub\Cache\hosted\pub.dev\camera_android-0.10.8+18\android\src\release\res
+io.flutter.plugins.camera.camera_android-pngs-6 G:\downlod\object detection\transferflow_issues\build\camera_android\generated\res\pngs\release
+io.flutter.plugins.camera.camera_android-resValues-7 G:\downlod\object detection\transferflow_issues\build\camera_android\generated\res\resValues\release
+io.flutter.plugins.camera.camera_android-rs-8 G:\downlod\object detection\transferflow_issues\build\camera_android\generated\res\rs\release
+io.flutter.plugins.camera.camera_android-mergeReleaseResources-9 G:\downlod\object detection\transferflow_issues\build\camera_android\intermediates\incremental\release\mergeReleaseResources\merged.dir
+io.flutter.plugins.camera.camera_android-mergeReleaseResources-10 G:\downlod\object detection\transferflow_issues\build\camera_android\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+io.flutter.plugins.camera.camera_android-merged_res-11 G:\downlod\object detection\transferflow_issues\build\camera_android\intermediates\merged_res\release
+io.flutter.plugins.camera.camera_android-packaged_res-12 G:\downlod\object detection\transferflow_issues\build\flutter_plugin_android_lifecycle\intermediates\packaged_res\release
