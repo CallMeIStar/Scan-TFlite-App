@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/controller/scan_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'IOT Control',
+      title: 'Home Automation',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(backgroundColor: Colors.blue),
       ),
@@ -146,341 +147,276 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('IOT Control'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, ),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 20),
-                    Center(
-                      child: Text(
-                        'Living Room',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.blue,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: SizedBox(
+                    height: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 20),
+                        Center(
+                          child: Text(
+                            'Living Room',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 10),
+                        FutureBuilder<List<Map<String, dynamic>>>(
+                          future: futureValue,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else if (snapshot.hasData) {
+                              final List<Map<String, dynamic>> dataList =
+                                  snapshot.data!;
+                              if (dataList.isNotEmpty) {
+                                final Map<String, dynamic> jsonData =
+                                    dataList[0];
+                                final Map<String, dynamic> jsonData1 =
+                                    dataList[1];
+                                final temperature = jsonData['value'];
+                                final humidity = jsonData1['value'];
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.thermostat_outlined),
+                                        Text(
+                                          "Temperature ${temperature.toStringAsFixed(2)} °C",
+                                          style:
+                                              const TextStyle(fontSize: 10.0),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.water_drop_outlined),
+                                        Text(
+                                          "Humidity ${humidity.toStringAsFixed(2)} %",
+                                          style:
+                                              const TextStyle(fontSize: 10.0),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row()
+                                  ],
+                                );
+                              } else {
+                                return const Text('No data available');
+                              }
+                            } else {
+                              return const Text('No data available');
+                            }
+                          },
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 10),
-                    FutureBuilder<List<Map<String, dynamic>>>(
-                      future: futureValue,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else if (snapshot.hasData) {
-                          final List<Map<String, dynamic>> dataList =
-                              snapshot.data!;
-                          if (dataList.isNotEmpty) {
-                            final Map<String, dynamic> jsonData = dataList[0];
-                            final Map<String, dynamic> jsonData1 = dataList[1];
-                            final Map<String, dynamic> jsonData2 = dataList[2];
-                            final Map<String, dynamic> jsonData3 = dataList[3];
-                            final Map<String, dynamic> jsonData4 = dataList[4];
-                            final Map<String, dynamic> jsonData5 = dataList[5];
-                            final temperature = jsonData['value'];
-                            final humidity = jsonData1['value'];
-                            final heatIndex = jsonData2['value'];
-                            final wifiStrength = jsonData3['value'];
-                            final distance = jsonData4['value'];
-                            final waterLevel = jsonData5['value'];
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(Icons.thermostat_outlined),
-                                    Text(
-                                      "Temperature ${temperature.toStringAsFixed(2)} °C",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(Icons.water_drop_outlined),
-                                    Text(
-                                      "Humidity ${humidity.toStringAsFixed(2)} %",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                        Icons.local_fire_department_outlined),
-                                    Text(
-                                      "Heat Index:${heatIndex.toStringAsFixed(2)} °C",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    getWifiIcon(wifiStrength.abs()),
-                                    Text(
-                                      "WiFi Strength:${wifiStrength.abs()}",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(Icons.rule_rounded),
-                                    Text(
-                                      "Distance:${distance.toStringAsFixed(2)} cm",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                        Icons.local_fire_department_outlined),
-                                    Text(
-                                      "Water Level:${waterLevel.toStringAsFixed(2)}",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                )
-                              ],
-                            );
-                          } else {
-                            return const Text('No data available');
-                          }
-                        } else {
-                          return const Text('No data available');
-                        }
-                      },
-                    ),
-                    FutureBuilder<List<Map<String, dynamic>>>(
-                      future: futureServoValue,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else if (snapshot.hasData) {
-                          final List<Map<String, dynamic>> dataList =
-                              snapshot.data!;
-                          if (dataList.isNotEmpty) {
-                            final Map<String, dynamic> jsonData = dataList[0];
-                            final servovalue = jsonData['value'];
-                            final measure = jsonData['unit'];
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                const SizedBox(height: 0),
-                                Row(
-                                  children: [
-                                    const Icon(Icons.speed_outlined),
-                                    Text(
-                                      'Value: $servovalue $measure',
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          } else {
-                            return const Text('No data available');
-                          }
-                        } else {
-                          return const Text('No data available');
-                        }
-                      },
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 20),
-                    Center(
-                      child: Text(
-                        'Kitchen',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+              SizedBox(width: 10),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: SizedBox(
+                    height: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 20),
+                        Center(
+                          child: Text(
+                            'Kitchen',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 10),
+                        FutureBuilder<List<Map<String, dynamic>>>(
+                          future: futureValue,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else if (snapshot.hasData) {
+                              final List<Map<String, dynamic>> dataList =
+                                  snapshot.data!;
+                              if (dataList.isNotEmpty) {
+                                final Map<String, dynamic> jsonData =
+                                    dataList[0];
+                                final Map<String, dynamic> jsonData1 =
+                                    dataList[1];
+                                final Map<String, dynamic> jsonData2 =
+                                    dataList[2];
+                                final Map<String, dynamic> jsonData7 =
+                                    dataList[6];
+                                final temperature = jsonData['value'];
+                                final humidity = jsonData1['value'];
+                                final waterLevel = jsonData2['value'];
+                                final gasLevel = jsonData7['value'];
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.thermostat_outlined),
+                                        Text(
+                                          "Temperature ${temperature.toStringAsFixed(2)} °C",
+                                          style:
+                                              const TextStyle(fontSize: 10.0),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.water_drop_outlined),
+                                        Text(
+                                          "Humidity ${humidity.toStringAsFixed(2)} %",
+                                          style:
+                                              const TextStyle(fontSize: 10.0),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.wb_cloudy_outlined),
+                                        Text(
+                                          "Gas Level:${gasLevel.toStringAsFixed(2)}",
+                                          style:
+                                              const TextStyle(fontSize: 10.0),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.water_drop_outlined),
+                                        Text(
+                                          "Water Level:${waterLevel.toStringAsFixed(2)}",
+                                          style:
+                                              const TextStyle(fontSize: 10.0),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row()
+                                  ],
+                                );
+                              } else {
+                                return const Text('No data available');
+                              }
+                            } else {
+                              return const Text('No data available');
+                            }
+                          },
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 10),
-                    FutureBuilder<List<Map<String, dynamic>>>(
-                      future: futureValue,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else if (snapshot.hasData) {
-                          final List<Map<String, dynamic>> dataList =
-                              snapshot.data!;
-                          if (dataList.isNotEmpty) {
-                            final Map<String, dynamic> jsonData = dataList[0];
-                            final Map<String, dynamic> jsonData1 = dataList[1];
-                            final Map<String, dynamic> jsonData2 = dataList[2];
-                            final Map<String, dynamic> jsonData3 = dataList[3];
-                            final Map<String, dynamic> jsonData4 = dataList[4];
-                            final Map<String, dynamic> jsonData5 = dataList[5];
-                            final temperature = jsonData['value'];
-                            final humidity = jsonData1['value'];
-                            final heatIndex = jsonData2['value'];
-                            final wifiStrength = jsonData3['value'];
-                            final distance = jsonData4['value'];
-                            final waterLevel = jsonData5['value'];
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(Icons.thermostat_outlined),
-                                    Text(
-                                      "Temperature ${temperature.toStringAsFixed(2)} °C",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(Icons.water_drop_outlined),
-                                    Text(
-                                      "Humidity ${humidity.toStringAsFixed(2)} %",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                        Icons.local_fire_department_outlined),
-                                    Text(
-                                      "Heat Index:${heatIndex.toStringAsFixed(2)} °C",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    getWifiIcon(wifiStrength.abs()),
-                                    Text(
-                                      "WiFi Strength:${wifiStrength.abs()}",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(Icons.mode_sharp),
-                                    Text(
-                                      "Distance:${distance.toStringAsFixed(2)} cm",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                        Icons.local_fire_department_outlined),
-                                    Text(
-                                      "Water Level:${waterLevel.toStringAsFixed(2)}",
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Row(
-                                )
-                              ],
-                            );
-                          } else {
-                            return const Text('No data available');
-                          }
-                        } else {
-                          return const Text('No data available');
-                        }
-                      },
-                    ),
-                    FutureBuilder<List<Map<String, dynamic>>>(
-                      future: futureServoValue,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else if (snapshot.hasData) {
-                          final List<Map<String, dynamic>> dataList =
-                              snapshot.data!;
-                          if (dataList.isNotEmpty) {
-                            final Map<String, dynamic> jsonData = dataList[0];
-                            final servovalue = jsonData['value'];
-                            final measure = jsonData['unit'];
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                const SizedBox(height: 0),
-                                Row(
-                                  children: [
-                                    const Icon(Icons.speed_outlined),
-                                    Text(
-                                      'Value: $servovalue $measure',
-                                      style: const TextStyle(fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          } else {
-                            return const Text('No data available');
-                          }
-                        } else {
-                          return const Text('No data available');
-                        }
-                      },
-                    ),
-                  ],
+                  ),
                 ),
               ),
+            ],
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.blue),
+              borderRadius: BorderRadius.circular(10.0),
             ),
-          ],
-        ),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Text(
+                      'Miscellaneous',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  FutureBuilder<List<Map<String, dynamic>>>(
+                    future: futureValue,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (snapshot.hasData) {
+                        final List<Map<String, dynamic>> dataList =
+                            snapshot.data!;
+                        if (dataList.isNotEmpty) {
+                          final Map<String, dynamic> jsonData3 = dataList[3];
+                          final Map<String, dynamic> jsonData4 = dataList[4];
+                          final wifiStrength = jsonData3['value'];
+                          final distance = jsonData4['value'];
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Row(
+                                children: [
+                                  getWifiIcon(wifiStrength.abs()),
+                                  Text(
+                                    "WiFi Strength:${wifiStrength.abs()}",
+                                    style: const TextStyle(fontSize: 10.0),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  const Icon(Icons.mode_sharp),
+                                  Text(
+                                    "Distance:${distance.toStringAsFixed(2)} cm",
+                                    style: const TextStyle(fontSize: 10.0),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row()
+                            ],
+                          );
+                        } else {
+                          return const Text('No data available');
+                        }
+                      } else {
+                        return const Text('No data available');
+                      }
+                    },
+                  ),
+                ]),
+          ),
+        ]),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
