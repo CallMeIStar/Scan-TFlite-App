@@ -58,11 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     futureValue = fetchValue();
-    futureServoValue = fetchServoValue();
     timer = Timer.periodic(const Duration(seconds: 3), (Timer t) {
       setState(() {
         futureValue = fetchValue();
-        futureServoValue = fetchServoValue();
       });
     });
     _initializeCamera();
@@ -88,18 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<List<Map<String, dynamic>>> fetchServoValue() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.15.140/getServoValue'));
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonData = json.decode(response.body);
-      final List<Map<String, dynamic>> dataList =
-          jsonData.cast<Map<String, dynamic>>();
-      return dataList;
-    } else {
-      throw Exception('Failed to load value');
-    }
-  }
 
   Future<void> setFanStatus() async {
     final url = Uri.parse('http://192.168.15.140/setStatus');
@@ -148,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('IOT Control'),
       ),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -156,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.blue,
+                      color: Colors.blue,width: 4
                     ),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -179,12 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         FutureBuilder<List<Map<String, dynamic>>>(
                           future: futureValue,
                           builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const CircularProgressIndicator();
-                            } else if (snapshot.hasError) {
-                              return Text('Error: ${snapshot.error}');
-                            } else if (snapshot.hasData) {
+                            if (snapshot.hasData) {
                               final List<Map<String, dynamic>> dataList =
                                   snapshot.data!;
                               if (dataList.isNotEmpty) {
@@ -223,10 +204,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ],
                                 );
                               } else {
-                                return const Text('No data available');
+                                return const Text('');
                               }
                             } else {
-                              return const Text('No data available');
+                              return const Text('');
                             }
                           },
                         ),
@@ -239,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue),
+                    border: Border.all(color: Colors.blue,width: 4),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: SizedBox(
@@ -261,12 +242,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         FutureBuilder<List<Map<String, dynamic>>>(
                           future: futureValue,
                           builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const CircularProgressIndicator();
-                            } else if (snapshot.hasError) {
-                              return Text('Error: ${snapshot.error}');
-                            } else if (snapshot.hasData) {
+                            if (snapshot.hasData) {
                               final List<Map<String, dynamic>> dataList =
                                   snapshot.data!;
                               if (dataList.isNotEmpty) {
@@ -274,13 +250,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                     dataList[0];
                                 final Map<String, dynamic> jsonData1 =
                                     dataList[1];
-                                final Map<String, dynamic> jsonData2 =
-                                    dataList[2];
+                                final Map<String, dynamic> jsonData5 =
+                                    dataList[5];
                                 final Map<String, dynamic> jsonData7 =
                                     dataList[6];
                                 final temperature = jsonData['value'];
                                 final humidity = jsonData1['value'];
-                                final waterLevel = jsonData2['value'];
+                                final waterLevel = jsonData5['value'];
                                 final gasLevel = jsonData7['value'];
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -333,10 +309,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ],
                                 );
                               } else {
-                                return const Text('No data available');
+                                return const Text('');
                               }
                             } else {
-                              return const Text('No data available');
+                              return const Text('');
                             }
                           },
                         ),
@@ -349,7 +325,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           DecoratedBox(
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue),
+              border: Border.all(color: Colors.blue,width: 4),
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
@@ -368,18 +344,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   FutureBuilder<List<Map<String, dynamic>>>(
                     future: futureValue,
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
-                      } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else if (snapshot.hasData) {
+                      if (snapshot.hasData) {
                         final List<Map<String, dynamic>> dataList =
                             snapshot.data!;
                         if (dataList.isNotEmpty) {
                           final Map<String, dynamic> jsonData3 = dataList[3];
                           final Map<String, dynamic> jsonData4 = dataList[4];
+                          final Map<String, dynamic> jsonData6 = dataList[6];
                           final wifiStrength = jsonData3['value'];
                           final distance = jsonData4['value'];
+                          final occupiedRoom = jsonData6['value'];
+                          String message = '';
+                          switch (occupiedRoom) {
+                            case 0:
+                              message = 'No Rooms Occupied';
+                              break;
+                            case 1:
+                              message = 'Kitchen is Occupied';
+                              break;
+                            case 2:
+                              message = 'Living Room is Occupied';
+                              break;
+                            case 3:
+                              message = 'Both are Occupied';
+                              break;
+                            default:
+                              message = 'Unknown Status';
+                              break;
+                          }
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -395,9 +387,19 @@ class _MyHomePageState extends State<MyHomePage> {
                               const SizedBox(height: 10),
                               Row(
                                 children: [
-                                  const Icon(Icons.mode_sharp),
+                                  const Icon(Icons.straighten_outlined),
                                   Text(
                                     "Distance:${distance.toStringAsFixed(2)} cm",
+                                    style: const TextStyle(fontSize: 10.0),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  const Icon(Icons.home),
+                                  Text(
+                                    message,
                                     style: const TextStyle(fontSize: 10.0),
                                   ),
                                 ],
@@ -407,10 +409,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           );
                         } else {
-                          return const Text('No data available');
+                          return const Text('');
                         }
                       } else {
-                        return const Text('No data available');
+                        return const Text('');
                       }
                     },
                   ),
