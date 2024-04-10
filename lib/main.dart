@@ -86,7 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-
   Future<void> setFanStatus() async {
     final url = Uri.parse('http://192.168.15.140/setStatus');
     final headers = {'Content-Type': 'application/json'};
@@ -131,292 +130,301 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('IOT Control'),
+        title: const Text('HomeControl'),
       ),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blue,width: 4
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: SizedBox(
-                    height: 200,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 20),
-                        Center(
-                          child: Text(
-                            'Living Room',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
+                    child: SizedBox(
+                      height: 200,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: 20),
+                          Center(
+                            child: Text(
+                              'Living Room',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        FutureBuilder<List<Map<String, dynamic>>>(
-                          future: futureValue,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              final List<Map<String, dynamic>> dataList =
-                                  snapshot.data!;
-                              if (dataList.isNotEmpty) {
-                                final Map<String, dynamic> jsonData =
-                                    dataList[0];
-                                final Map<String, dynamic> jsonData1 =
-                                    dataList[1];
-                                final temperature = jsonData['value'];
-                                final humidity = jsonData1['value'];
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.thermostat_outlined),
-                                        Text(
-                                          "Temperature ${temperature.toStringAsFixed(2)} °C",
-                                          style:
-                                              const TextStyle(fontSize: 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.water_drop_outlined),
-                                        Text(
-                                          "Humidity ${humidity.toStringAsFixed(2)} %",
-                                          style:
-                                              const TextStyle(fontSize: 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row()
-                                  ],
-                                );
+                          const SizedBox(height: 10),
+                          FutureBuilder<List<Map<String, dynamic>>>(
+                            future: futureValue,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final List<Map<String, dynamic>> dataList =
+                                    snapshot.data!;
+                                if (dataList.isNotEmpty) {
+                                  final Map<String, dynamic> jsonData =
+                                      dataList[0];
+                                  final Map<String, dynamic> jsonData1 =
+                                      dataList[1];
+                                  final temperature = jsonData['value'];
+                                  final humidity = jsonData1['value'];
+                                  return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.thermostat_outlined),
+                                          Text(
+                                            "Temperature ${temperature.toStringAsFixed(2)} °C",
+                                            style:
+                                                const TextStyle(fontSize: 10.0),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.water_drop_outlined),
+                                          Text(
+                                            "Humidity ${humidity.toStringAsFixed(2)} %",
+                                            style:
+                                                const TextStyle(fontSize: 10.0),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row()
+                                    ],
+                                  );
+                                } else {
+                                  return const Text('');
+                                }
                               } else {
                                 return const Text('');
                               }
-                            } else {
-                              return const Text('');
-                            }
-                          },
-                        ),
-                      ],
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
               SizedBox(width: 10),
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue,width: 4),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: SizedBox(
-                    height: 200,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 20),
-                        Center(
-                          child: Text(
-                            'Kitchen',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: SizedBox(
+                      height: 200,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: 20),
+                          Center(
+                            child: Text(
+                              'Kitchen',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        FutureBuilder<List<Map<String, dynamic>>>(
-                          future: futureValue,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              final List<Map<String, dynamic>> dataList =
-                                  snapshot.data!;
-                              if (dataList.isNotEmpty) {
-                                final Map<String, dynamic> jsonData =
-                                    dataList[0];
-                                final Map<String, dynamic> jsonData1 =
-                                    dataList[1];
-                                final Map<String, dynamic> jsonData5 =
-                                    dataList[5];
-                                final Map<String, dynamic> jsonData7 =
-                                    dataList[6];
-                                final temperature = jsonData['value'];
-                                final humidity = jsonData1['value'];
-                                final waterLevel = jsonData5['value'];
-                                final gasLevel = jsonData7['value'];
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.thermostat_outlined),
-                                        Text(
-                                          "Temperature ${temperature.toStringAsFixed(2)} °C",
-                                          style:
-                                              const TextStyle(fontSize: 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.water_drop_outlined),
-                                        Text(
-                                          "Humidity ${humidity.toStringAsFixed(2)} %",
-                                          style:
-                                              const TextStyle(fontSize: 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.wb_cloudy_outlined),
-                                        Text(
-                                          "Gas Level:${gasLevel.toStringAsFixed(2)}",
-                                          style:
-                                              const TextStyle(fontSize: 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.water_drop_outlined),
-                                        Text(
-                                          "Water Level:${waterLevel.toStringAsFixed(2)}",
-                                          style:
-                                              const TextStyle(fontSize: 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row()
-                                  ],
-                                );
+                          const SizedBox(height: 10),
+                          FutureBuilder<List<Map<String, dynamic>>>(
+                            future: futureValue,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final List<Map<String, dynamic>> dataList =
+                                    snapshot.data!;
+                                if (dataList.isNotEmpty) {
+                                  final Map<String, dynamic> jsonData =
+                                      dataList[0];
+                                  final Map<String, dynamic> jsonData1 =
+                                      dataList[1];
+                                  final Map<String, dynamic> jsonData5 =
+                                      dataList[5];
+                                  final Map<String, dynamic> jsonData7 =
+                                      dataList[6];
+                                  final temperature = jsonData['value'];
+                                  final humidity = jsonData1['value'];
+                                  final waterLevel = jsonData5['value'];
+                                  final gasLevel = jsonData7['value'];
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.thermostat_outlined),
+                                          Text(
+                                            "Temperature ${temperature.toStringAsFixed(2)} °C",
+                                            style:
+                                                const TextStyle(fontSize: 10.0),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.water_drop_outlined),
+                                          Text(
+                                            "Humidity ${humidity.toStringAsFixed(2)} %",
+                                            style:
+                                                const TextStyle(fontSize: 10.0),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.wb_cloudy_outlined),
+                                          Text(
+                                            "Gas Level:${gasLevel.toStringAsFixed(2)}",
+                                            style:
+                                                const TextStyle(fontSize: 10.0),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.water_drop_outlined),
+                                          Text(
+                                            "Water Level:${waterLevel.toStringAsFixed(2)}",
+                                            style:
+                                                const TextStyle(fontSize: 10.0),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row()
+                                    ],
+                                  );
+                                } else {
+                                  return const Text('');
+                                }
                               } else {
                                 return const Text('');
                               }
-                            } else {
-                              return const Text('');
-                            }
-                          },
-                        ),
-                      ],
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue,width: 4),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 20),
-                  Center(
-                    child: Text(
-                      'Miscellaneous',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blue, width: 2),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Text(
+                        'Miscellaneous',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  FutureBuilder<List<Map<String, dynamic>>>(
-                    future: futureValue,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final List<Map<String, dynamic>> dataList =
-                            snapshot.data!;
-                        if (dataList.isNotEmpty) {
-                          final Map<String, dynamic> jsonData3 = dataList[3];
-                          final Map<String, dynamic> jsonData4 = dataList[4];
-                          final Map<String, dynamic> jsonData6 = dataList[6];
-                          final wifiStrength = jsonData3['value'];
-                          final distance = jsonData4['value'];
-                          final occupiedRoom = jsonData6['value'];
-                          String message = '';
-                          switch (occupiedRoom) {
-                            case 0:
-                              message = 'No Rooms Occupied';
-                              break;
-                            case 1:
-                              message = 'Kitchen is Occupied';
-                              break;
-                            case 2:
-                              message = 'Living Room is Occupied';
-                              break;
-                            case 3:
-                              message = 'Both are Occupied';
-                              break;
-                            default:
-                              message = 'Unknown Status';
-                              break;
+                    FutureBuilder<List<Map<String, dynamic>>>(
+                      future: futureValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final List<Map<String, dynamic>> dataList =
+                              snapshot.data!;
+                          if (dataList.isNotEmpty) {
+                            final Map<String, dynamic> jsonData3 = dataList[3];
+                            final Map<String, dynamic> jsonData4 = dataList[4];
+                            final Map<String, dynamic> jsonData6 = dataList[6];
+                            final wifiStrength = jsonData3['value'];
+                            final distance = jsonData4['value'];
+                            final occupiedRoom = jsonData6['value'];
+                            String message = '';
+                            switch (occupiedRoom) {
+                              case 0:
+                                message = 'No Rooms Occupied';
+                                break;
+                              case 1:
+                                message = 'Kitchen is Occupied';
+                                break;
+                              case 2:
+                                message = 'Living Room is Occupied';
+                                break;
+                              case 3:
+                                message = 'Both are Occupied';
+                                break;
+                              default:
+                                message = 'Unknown Status';
+                                break;
+                            }
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    getWifiIcon(wifiStrength.abs()),
+                                    Text(
+                                      "WiFi Strength:${wifiStrength.abs()}",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.straighten_outlined),
+                                    Text(
+                                      "Distance:${distance.toStringAsFixed(2)} cm",
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.home),
+                                    Text(
+                                      message,
+                                      style: const TextStyle(fontSize: 10.0),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row()
+                              ],
+                            );
+                          } else {
+                            return const Text('');
                           }
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Row(
-                                children: [
-                                  getWifiIcon(wifiStrength.abs()),
-                                  Text(
-                                    "WiFi Strength:${wifiStrength.abs()}",
-                                    style: const TextStyle(fontSize: 10.0),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  const Icon(Icons.straighten_outlined),
-                                  Text(
-                                    "Distance:${distance.toStringAsFixed(2)} cm",
-                                    style: const TextStyle(fontSize: 10.0),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  const Icon(Icons.home),
-                                  Text(
-                                    message,
-                                    style: const TextStyle(fontSize: 10.0),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row()
-                            ],
-                          );
                         } else {
                           return const Text('');
                         }
-                      } else {
-                        return const Text('');
-                      }
-                    },
-                  ),
-                ]),
+                      },
+                    ),
+                  ]),
+            ),
           ),
         ]),
       ),
